@@ -1,7 +1,7 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class LivroValidator {
+export default class AutoreValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -25,21 +25,12 @@ export default class LivroValidator {
    */
   public schema = schema.create({
     nome: schema.string([
-      rules.alphaNum({
-        allow: ['space', 'underscore', 'dash']
-      }),    
+      rules.alpha({
+        allow: ['space']
+      })
     ]),
-    isbn: schema.string([
-      rules.minLength(18),
-      rules.maxLength(18),
-      rules.unique({ table: 'livros', column: 'isbn' })
-    ]),
-    ano: schema.string([
-      rules.minLength(4),
-      rules.maxLength(4)
-    ]),
-    genero: schema.string([]),
-    classificacao: schema.string([]),
+    nacionalidade: schema.string.optional([]),
+    generoPrincipal: schema.string.optional([])
   })
 
   /**
@@ -54,9 +45,6 @@ export default class LivroValidator {
    *
    */
   public messages: CustomMessages = {
-    required: 'O campo {{field}} é obrigatório',
-    minLength: 'Tamanho mínimo não atingido',
-    maxLength: 'Tamanho máximo excedido',
-    unique: '{{field}} já cadastrado. Digite um {{field}} válido'
+    alpha: 'Digite só letras'
   }
 }

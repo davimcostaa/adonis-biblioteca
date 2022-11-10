@@ -7,7 +7,7 @@ import AssinaturaValidator from "App/Validators/AssinaturaValidator"
 export default class AssinaturasController {
     
     async index() {
-        return await Assinatura.query().paginate(1)
+        return await Assinatura.query().preload('clientes').paginate(1)
     }
 
     async store({request}) {

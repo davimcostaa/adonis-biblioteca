@@ -1,7 +1,7 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class LivroValidator {
+export default class ClienteUpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,22 +24,30 @@ export default class LivroValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string([
-      rules.alphaNum({
-        allow: ['space', 'underscore', 'dash']
-      }),    
+    cpf: schema.string.optional([
+      rules.minLength(11),
+      rules.maxLength(11),
+      rules.unique({ table: 'clientes', column: 'cpf' })
     ]),
-    isbn: schema.string([
-      rules.minLength(18),
-      rules.maxLength(18),
-      rules.unique({ table: 'livros', column: 'isbn' })
+    codigo: schema.string.optional([
+      rules.alphaNum()
     ]),
-    ano: schema.string([
-      rules.minLength(4),
-      rules.maxLength(4)
+    nome: schema.string.optional([
+      rules.alpha({
+      allow: ['space']
+    })
     ]),
-    genero: schema.string([]),
-    classificacao: schema.string([]),
+    email: schema.string.optional([
+      rules.email(),
+      rules.unique({ table: 'clientes', column: 'email' })
+    ]),
+    dataNascimento: schema.date.optional(),
+    assinaturaId: schema.number.optional([
+      rules.exists({
+        table: 'assinaturas',
+        column: 'id'
+      })
+    ]),
   })
 
   /**
@@ -55,8 +63,10 @@ export default class LivroValidator {
    */
   public messages: CustomMessages = {
     required: 'O campo {{field}} é obrigatório',
+    alpha: 'Insira um nome valido',
     minLength: 'Tamanho mínimo não atingido',
     maxLength: 'Tamanho máximo excedido',
-    unique: '{{field}} já cadastrado. Digite um {{field}} válido'
+    unique: '{{field}} já cadastrado. Digite um {{field}} válido',
+    exists: 'Insira um valor existente'
   }
 }

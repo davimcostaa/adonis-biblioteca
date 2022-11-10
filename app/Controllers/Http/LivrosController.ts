@@ -7,7 +7,7 @@ import LivroValidator from "App/Validators/LivroValidator"
 export default class LivrosController {
 
     async index() {
-        return await Livro.query().paginate(1)
+        return await Livro.query().preload('autores').paginate(1)
     }
 
     async store({request}) {
@@ -15,8 +15,9 @@ export default class LivrosController {
         return await Livro.create(dados)
     }
 
-    async show() {
-                   
+    async show({request}) {
+        const id = request.param('id')
+        return await Livro.findOrFail(id)           
     }
 
     async update({request}) {

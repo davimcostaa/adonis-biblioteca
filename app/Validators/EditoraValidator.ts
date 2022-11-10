@@ -31,7 +31,8 @@ export default class EditoraValidator {
     ]),
     cnpj: schema.string([
       rules.minLength(18),
-      rules.maxLength(18)
+      rules.maxLength(18),
+      rules.unique({ table: 'editoras', column: 'cnpj' })    
     ]),
     localidade: schema.string([])
   })
@@ -47,5 +48,10 @@ export default class EditoraValidator {
    * }
    *
    */
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    required: 'O campo {{field}} é obrigatório',
+    minLength: 'Tamanho mínimo não atingido',
+    maxLength: 'Tamanho máximo excedido',
+    unique: '{{field}} já cadastrado. Digite um {{field}} válido'
+  }
 }

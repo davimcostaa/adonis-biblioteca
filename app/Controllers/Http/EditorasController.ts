@@ -1,6 +1,7 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Editora from "App/Models/Editora"
+import EditoraUpdateValidator from "App/Validators/EditoraUpdateValidator"
 import EditoraValidator from "App/Validators/EditoraValidator"
 
 export default class EditorasController {
@@ -20,7 +21,7 @@ export default class EditorasController {
 
     async update({request}) {
         const id = request.param('id')
-        const dados = await request.validate(EditoraValidator)
+        const dados = await request.validate(EditoraUpdateValidator)
         const editora = await Editora.findOrFail(id)
 
         editora.merge(dados)
