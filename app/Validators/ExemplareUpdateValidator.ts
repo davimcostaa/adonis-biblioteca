@@ -1,7 +1,7 @@
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class AssinaturaValidator {
+export default class ExemplareValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,9 +24,15 @@ export default class AssinaturaValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string(),
-    limiteEmprestimo: schema.string(),
-    limiteDias: schema.string()
+    livroId: schema.number.optional([
+      rules.exists({
+        table: 'livros',
+        column: 'id'
+      })
+    ]),
+    localizacao: schema.string.optional([
+      rules.alphaNum()
+    ])
   })
 
   /**
@@ -41,6 +47,7 @@ export default class AssinaturaValidator {
    *
    */
   public messages: CustomMessages = {
-    required: 'O campo {{field}} é obrigatório'
+    exists: 'Insira um valor existente',
+    alpha: 'Insira uma localização valida',
   }
 }

@@ -9,7 +9,7 @@ export default class LivroAutore extends BaseModel {
   public livroId: number
 
   @column()
-  public autorId: number
+  public autoreId: number
   
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

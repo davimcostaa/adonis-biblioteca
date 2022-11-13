@@ -62,7 +62,6 @@ export default class ClienteUpdateValidator {
    *
    */
   public messages: CustomMessages = {
-    required: 'O campo {{field}} é obrigatório',
     alpha: 'Insira um nome valido',
     minLength: 'Tamanho mínimo não atingido',
     maxLength: 'Tamanho máximo excedido',

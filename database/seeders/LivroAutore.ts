@@ -4,11 +4,11 @@ import LivroAutore from 'App/Models/LivroAutore'
 export default class extends BaseSeeder {
   public async run () {
     await LivroAutore.createMany([
-      {autorId: 1, livroId: 1}, 
-      {autorId: 2, livroId: 4}, 
-      {autorId: 3, livroId: 2}, 
-      {autorId: 4, livroId: 4},
-      {autorId: 5, livroId: 5}, 
+      {autoreId: 1, livroId: 1}, 
+      {autoreId: 2, livroId: 4}, 
+      {autoreId: 3, livroId: 2}, 
+      {autoreId: 4, livroId: 4},
+      {autoreId: 5, livroId: 5}, 
     ])
   }
 }

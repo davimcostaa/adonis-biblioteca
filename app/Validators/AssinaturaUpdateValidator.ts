@@ -24,9 +24,9 @@ export default class AssinaturaUpdateValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string(),
-    limiteEmprestimo: schema.string(),
-    limiteDias: schema.string()
+    nome: schema.string.optional(),
+    limiteEmprestimo: schema.string.optional(),
+    limiteDias: schema.string.optional()
   })
 
   /**

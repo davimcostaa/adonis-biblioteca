@@ -30,7 +30,8 @@ export default class ClienteValidator {
       rules.unique({ table: 'clientes', column: 'cpf' })
     ]),
     codigo: schema.string([
-      rules.alphaNum()
+      rules.alphaNum(),
+      rules.unique({ table: 'clientes', column: 'codigo' })
     ]),
     nome: schema.string([
       rules.alpha({
@@ -65,6 +66,7 @@ export default class ClienteValidator {
   public messages: CustomMessages = {
     required: 'O campo {{field}} é obrigatório',
     alpha: 'Insira um nome valido',
+    alphaNum: 'Insira um código valido',
     minLength: 'Tamanho mínimo não atingido',
     maxLength: 'Tamanho máximo excedido',
     unique: '{{field}} já cadastrado. Digite um {{field}} válido',

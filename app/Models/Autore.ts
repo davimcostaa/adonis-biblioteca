@@ -23,5 +23,6 @@ export default class Autore extends BaseModel {
 
   @manyToMany(()=>Livro, {pivotTable: 'livro_autores'})
   public livros: ManyToMany<typeof Livro>
+  
 }
 

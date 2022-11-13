@@ -8,11 +8,10 @@ export default class extends BaseSchema {
       table.increments('id')
 
       table.integer('cliente_id').unsigned().references('id').inTable('clientes').notNullable()
-      table.integer('exemplar_id').unsigned().references('id').inTable('exemplares').notNullable()
+      table.integer('exemplare_id').unsigned().references('id').inTable('exemplares').notNullable()
       table.date('data_emprestimo').notNullable()
       table.date('data_devolucao').notNullable()
       
-
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
