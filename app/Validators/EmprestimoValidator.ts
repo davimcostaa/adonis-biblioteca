@@ -1,4 +1,5 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { DateTime } from 'luxon'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class EmprestimoValidator {
@@ -23,6 +24,10 @@ export default class EmprestimoValidator {
    *     ])
    *    ```
    */
+  public refs = schema.refs({
+    allowedDate: DateTime.local().plus({ days: 15 })
+  })
+
   public schema = schema.create({
     clienteId: schema.number([
       rules.exists({
@@ -38,8 +43,11 @@ export default class EmprestimoValidator {
       rules.unique({ table: 'emprestimos', column: 'exemplare_id' }) 
     ]),
     dataEmprestimo: schema.date(),
-    dataDevolucao: schema.date(),
+    dataDevolucao: schema.date({}, [
+      rules.after(this.refs.allowedDate)
+    ])
   })
+
 
   /**
    * Custom messages for validation failures. You can make use of dot notation `(.)`

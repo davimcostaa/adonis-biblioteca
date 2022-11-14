@@ -9,6 +9,7 @@ export default class extends BaseSeeder {
       {autoreId: 3, livroId: 2}, 
       {autoreId: 4, livroId: 4},
       {autoreId: 5, livroId: 5}, 
+      {autoreId: 5, livroId: 2}, 
     ])
   }
 }
