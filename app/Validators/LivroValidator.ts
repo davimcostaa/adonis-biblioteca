@@ -30,8 +30,8 @@ export default class LivroValidator {
       }),    
     ]),
     isbn: schema.string([
-      rules.minLength(18),
-      rules.maxLength(18),
+      rules.minLength(17),
+      rules.maxLength(17),
       rules.unique({ table: 'livros', column: 'isbn' })
     ]),
     ano: schema.string([

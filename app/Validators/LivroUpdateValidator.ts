@@ -30,8 +30,8 @@ export default class LivroUpdateValidator {
       }),    
     ]),
     isbn: schema.string.optional([
-      rules.minLength(18),
-      rules.maxLength(18)
+      rules.minLength(17),
+      rules.maxLength(17)
     ]),
     ano: schema.string.optional([
       rules.minLength(4),

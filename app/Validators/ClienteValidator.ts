@@ -27,7 +27,7 @@ export default class ClienteValidator {
     cpf: schema.string([
       rules.minLength(11),
       rules.maxLength(11),
-      rules.unique({ table: 'clientes', column: 'cpf' })
+      rules.unique({ table: 'clientes', column: 'cpf' }),
     ]),
     codigo: schema.string([
       rules.alphaNum(),

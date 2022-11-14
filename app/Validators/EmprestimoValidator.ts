@@ -63,5 +63,6 @@ export default class EmprestimoValidator {
   public messages: CustomMessages = {
     unique: '{{field}} já cadastrado. Digite um {{field}} válido',
     exists: 'Insira um valor existente',
+    after: 'Insira uma data válida'
   }
 }
