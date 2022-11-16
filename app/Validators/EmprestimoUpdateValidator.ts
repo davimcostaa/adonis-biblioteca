@@ -1,5 +1,6 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { DateTime } from 'luxon'
 
 export default class EmprestimoUpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -23,6 +24,11 @@ export default class EmprestimoUpdateValidator {
    *     ])
    *    ```
    */
+
+  public refs = schema.refs({
+    allowedDate: DateTime.local().plus({ days: 15 })
+  })
+
   public schema = schema.create({
     clienteId: schema.number.optional([
       rules.exists({
@@ -38,7 +44,9 @@ export default class EmprestimoUpdateValidator {
       rules.unique({ table: 'emprestimos', column: 'exemplareId' })
     ]),
     dataEmprestimo: schema.date.optional(),
-    dataDevolucao: schema.date.optional(),
+    dataDevolucao: schema.date.optional({}, [
+      rules.after(this.refs.allowedDate)
+    ])
   })
 
   /**
@@ -54,6 +62,7 @@ export default class EmprestimoUpdateValidator {
    */
   public messages: CustomMessages = {
     unique: '{{field}} já cadastrado. Digite um {{field}} válido',
-    exists: 'Insira um valor existente'
+    exists: 'Insira um valor existente',
+    
   }
 }
