@@ -10,10 +10,10 @@ export default class Assinatura extends BaseModel {
   public tipoAssinatura: string
 
   @column()
-  public limiteEmprestimo: string
+  public limiteEmprestimo: number
 
   @column()
-  public limiteDias: string
+  public limiteDias: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

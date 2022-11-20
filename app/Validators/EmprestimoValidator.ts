@@ -1,8 +1,21 @@
 import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import { DateTime } from 'luxon'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Cliente from 'App/Models/Cliente'
+import Assinatura from 'App/Models/Assinatura'
+
 
 export default class EmprestimoValidator {
+
+  async dias({request}) {
+    const dados = await request.validate(EmprestimoValidator)
+    const cliente = await Cliente.find(dados.clienteId)
+    const assinatura = await Assinatura.find(cliente!.assinaturaId)
+    const dias = assinatura!.limiteDias
+    return dias
+
+  }
+
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,9 +37,11 @@ export default class EmprestimoValidator {
    *     ])
    *    ```
    */
-  public refs = schema.refs({
-    allowedDate: DateTime.local().plus({ days: 15 })
-  })
+
+  /*public refs = schema.refs({
+    allowedDate: DateTime.local().plus({ days: this.dias})
+  }) */
+
 
   public schema = schema.create({
     clienteId: schema.number([
@@ -44,7 +59,7 @@ export default class EmprestimoValidator {
     ]),
     dataEmprestimo: schema.date(),
     dataDevolucao: schema.date({}, [
-      rules.after(this.refs.allowedDate)
+      rules.after(this.dias, 'days')
     ])
   })
 

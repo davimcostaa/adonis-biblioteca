@@ -27,7 +27,6 @@ Route.get('/', async () => {
 Route.post('/users', 'UsersController.store')
 Route.post('/login', 'UsersController.login')
 
-
 Route.group(() => {
   Route.resource('/livros', 'LivrosController').apiOnly()
   Route.resource('/assinaturas', 'AssinaturasController').apiOnly()
@@ -36,6 +35,7 @@ Route.group(() => {
   Route.resource('/clientes', 'CLientesController').apiOnly()
   Route.resource('/exemplares', 'ExemplaresController').apiOnly()
   Route.resource('/emprestimos', 'EmprestimosController').apiOnly()
+  Route.put('/emprestimos/:id/devolucao', 'EmprestimosController.devolucao')
   Route.resource('/livroautores', 'LivroAutoresController').apiOnly()
   Route.resource('/livroeditoras', 'LivroEditorasController').apiOnly()
 }).middleware('auth,api')

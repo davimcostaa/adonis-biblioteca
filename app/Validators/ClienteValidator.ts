@@ -46,7 +46,8 @@ export default class ClienteValidator {
     telefone: schema.string([
       rules.mobile({
         locale: ['pt-BR']
-      })
+      }),
+    rules.unique({ table: 'clientes', column: 'telefone'})
     ]),
     assinaturaId: schema.number([
       rules.exists({
@@ -74,6 +75,7 @@ export default class ClienteValidator {
     minLength: 'Tamanho mínimo não atingido',
     maxLength: 'Tamanho máximo excedido',
     unique: '{{field}} já cadastrado. Digite um {{field}} válido',
-    exists: 'Insira um valor existente'
+    exists: 'Insira um valor existente',
+    mobile: 'Digite um telefone válido: XXXXXXXXXXX ou (XX)XXXXX-XXXX'
   }
 }

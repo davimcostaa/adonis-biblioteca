@@ -24,13 +24,13 @@ export default class LivroEditoraUpdateValidator {
    *    ```
    */
   public schema = schema.create({
-    editoraId: schema.number([
+    editoraId: schema.number.optional([
       rules.exists({
         table: 'editoras',
         column: 'id'
       })
     ]),
-    livroId: schema.number([
+    livroId: schema.number.optional([
       rules.exists({
         table: 'livros',
         column: 'id'
