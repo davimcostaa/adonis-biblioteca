@@ -39,7 +39,11 @@ export default class LivroValidator {
       rules.maxLength(4)
     ]),
     genero: schema.string([]),
-    classificacao: schema.string([]),
+    classificacao: schema.string([
+      rules.alphaNum({
+        allow: ['space']
+      })
+    ]),
   })
 
   /**

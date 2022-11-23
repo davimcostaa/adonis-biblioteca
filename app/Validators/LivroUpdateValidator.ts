@@ -53,7 +53,6 @@ export default class LivroUpdateValidator {
    *
    */
   public messages: CustomMessages = {
-    required: 'O campo {{field}} é obrigatório',
     minLength: 'Tamanho mínimo não atingido',
     maxLength: 'Tamanho máximo excedido',
   }

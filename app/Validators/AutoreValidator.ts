@@ -29,7 +29,11 @@ export default class AutoreValidator {
         allow: ['space']
       })
     ]),
-    nacionalidade: schema.string.optional([]),
+    nacionalidade: schema.string.optional([
+      rules.alpha({
+        allow: ['space']
+      })
+    ]),
     generoPrincipal: schema.string.optional([])
   })
 

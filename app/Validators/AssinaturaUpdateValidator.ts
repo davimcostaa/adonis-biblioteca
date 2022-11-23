@@ -1,4 +1,4 @@
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AssinaturaUpdateValidator {
@@ -25,8 +25,12 @@ export default class AssinaturaUpdateValidator {
    */
   public schema = schema.create({
     nome: schema.string.optional(),
-    limiteEmprestimo: schema.string.optional(),
-    limiteDias: schema.string.optional()
+    limiteEmprestimo: schema.string.optional([
+      rules.regex(new RegExp('^[0-9]*$'))
+    ]),
+    limiteDias: schema.string.optional([
+      rules.regex(new RegExp('^[0-9]*$'))
+    ])
   })
 
   /**

@@ -34,7 +34,11 @@ export default class EditoraValidator {
       rules.maxLength(18),
       rules.unique({ table: 'editoras', column: 'cnpj' })    
     ]),
-    localidade: schema.string([])
+    localidade: schema.string([
+      rules.alpha({
+        allow: ['space']
+      })
+    ])
   })
 
   /**

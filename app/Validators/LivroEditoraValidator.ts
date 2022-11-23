@@ -50,6 +50,7 @@ export default class LivroEditoraValidator {
    *
    */
   public messages: CustomMessages = {
+    required: 'O campo {{field}} é obrigatório',
     exists: 'Insira um valor existente'
   }
 }
