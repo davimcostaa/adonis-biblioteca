@@ -38,6 +38,9 @@ export default class LivroValidator {
       rules.minLength(4),
       rules.maxLength(4)
     ]),
+    foto: schema.string([
+      rules.minLength(4)
+    ]),
     genero: schema.string([]),
     classificacao: schema.string([
       rules.alphaNum({

@@ -2,6 +2,7 @@
 
 import Exemplare from "App/Models/Exemplare"
 import ExemplareValidator from "App/Validators/ExemplareValidator"
+import ExemplareUpdateValidator from "App/Validators/ExemplareUpdateValidator"
 
 export default class ExemplaresController {
     async index() {
@@ -20,7 +21,7 @@ export default class ExemplaresController {
 
     async update({request}) {
         const id = request.param('id')
-        const dados = await request.validate()
+        const dados = await request.validate(ExemplareUpdateValidator)
         const exemplar = await Exemplare.findOrFail(id)
 
         exemplar.merge(dados)

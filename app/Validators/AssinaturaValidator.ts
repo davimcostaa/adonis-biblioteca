@@ -24,7 +24,7 @@ export default class AssinaturaValidator {
    *    ```
    */
   public schema = schema.create({
-    nome: schema.string(),
+    tipoAssinatura: schema.string(),
     limiteEmprestimo: schema.string([
       rules.regex(new RegExp('^[0-9]*$'))
     ]),

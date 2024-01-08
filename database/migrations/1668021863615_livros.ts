@@ -11,6 +11,7 @@ export default class extends BaseSchema {
       table.string('ano', 4).notNullable()
       table.string('genero', 45).notNullable()
       table.string('classificacao', 3).notNullable()
+      table.string('foto', 1000).notNullable()
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

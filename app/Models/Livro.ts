@@ -20,6 +20,9 @@ export default class Livro extends BaseModel {
   public genero: string
 
   @column()
+  public foto: string
+
+  @column()
   public classificacao: string
 
   @column.dateTime({ autoCreate: true })

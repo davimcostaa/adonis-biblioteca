@@ -41,7 +41,6 @@ export default class EmprestimoUpdateValidator {
         table: 'exemplares',
         column: 'id'
       }),
-      rules.unique({ table: 'emprestimos', column: 'exemplareId' })
     ]),
     dataEmprestimo: schema.date.optional(),
     dataDevolucao: schema.date.optional({}, [

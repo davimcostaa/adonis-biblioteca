@@ -27,7 +27,6 @@ export default class ClienteUpdateValidator {
     cpf: schema.string.optional([
       rules.minLength(11),
       rules.maxLength(11),
-      rules.unique({ table: 'clientes', column: 'cpf' })
     ]),
     codigo: schema.string.optional([
       rules.alphaNum()
@@ -39,7 +38,6 @@ export default class ClienteUpdateValidator {
     ]),
     email: schema.string.optional([
       rules.email(),
-      rules.unique({ table: 'clientes', column: 'email' })
     ]),
     dataNascimento: schema.date.optional(),
     assinaturaId: schema.number.optional([
